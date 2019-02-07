@@ -1,46 +1,34 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', 'UserController@index');
-Route::get('/coba', 'UserController@coba');
 
 Route::post('/login', 'UserController@login');
 Route::get('/logout', 'UserController@logout');
 Route::get('/user/search', 'UserController@search');
 
-//PRODUCT CRUD
-Route::post('/product', 'ProductController@index');
-Route::post('/product/view', 'ProductController@view');
-Route::post('/product/store', 'ProductController@store');
-Route::post('/product/delete', 'ProductController@delete');
-Route::post('/product/update', 'ProductController@update');
-Route::get('/product/search', 'ProductController@search');
+//PRODUCT
+Route::prefix('product')->group(function () {
+    Route::post('', 'ProductController@index');
+    Route::post('view', 'ProductController@view');
+    Route::post('store', 'ProductController@store');
+    Route::post('delete', 'ProductController@delete');
+    Route::post('update', 'ProductController@update');
+    Route::get('search', 'ProductController@search');
+});
 
+Route::prefix('order')->group(function () {
+    //ORDER CRUD
+    Route::post('', 'OrderController@index');
+    Route::post('view', 'OrderController@view');
+    Route::post('store', 'OrderController@store');
+    Route::post('delete', 'OrderController@delete');
+    Route::post('update', 'OrderController@update');
 
-//ORDER CRUD
-Route::post('/order', 'OrderController@index');
-Route::post('/order/view', 'OrderController@view');
-Route::post('/order/store', 'OrderController@store');
-Route::post('/order/delete', 'OrderController@delete');
-Route::post('/order/update', 'OrderController@update');
-
-
-
-//ORDER VALIDATION
-Route::post('/order/reporter', 'OrderController@reporter');
-Route::post('/order/update_finance', 'OrderController@update_finance');
-Route::post('/order/update_finance', 'OrderController@update_finance');
-
+    //ORDER VALIDATION
+    Route::post('reporter', 'OrderController@reporter');
+    Route::post('update_finance', 'OrderController@update_finance');
+    Route::post('update_finance', 'OrderController@update_finance');
+});
 
 Route::get('{any}', function () {
     return view('home');

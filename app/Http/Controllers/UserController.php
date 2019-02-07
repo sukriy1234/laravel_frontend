@@ -7,11 +7,6 @@ use Illuminate\Support\Facades\Session;
 
 class UserController extends MainController
 {
-    public function coba()
-    {
-        var_dump(config('app.url_api'));
-    }
-
     public function index()
     {
         if (Session::get('login')) {
