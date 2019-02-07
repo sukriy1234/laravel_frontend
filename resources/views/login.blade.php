@@ -50,7 +50,7 @@
                       password: vm.password
                     })
                     .then(function (response) {
-                       console.log(response);
+                       // console.log(response);
                        if(response.data.success == true){
                           alert('Success Login');
                           location.reload();
