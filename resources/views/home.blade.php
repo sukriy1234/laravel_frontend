@@ -26,10 +26,8 @@
       document.getElementById("logout").addEventListener("click", function(e) {
          axios.get('/logout')
          .then(function (response) {
-            alert(response.data.message);
-            if(response.data.success == true){
-               window.location = "/";
-            }
+            alert("Success Logout");
+            window.location = "/";
          })
          .catch(function (error) {
             console.log(error);
