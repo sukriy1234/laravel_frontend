@@ -104,7 +104,6 @@
             console.log(response.data);
             vm.orders = response.data.message;
             vm.session = response.data.session;
-            console.log(vm.session);
          })
          .catch(function (error) {
             console.log(error);
